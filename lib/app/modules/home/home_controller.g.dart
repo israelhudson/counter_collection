@@ -9,40 +9,6 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeBase, Store {
-  final _$valueAtom = Atom(name: '_HomeBase.value');
-
-  @override
-  int get value {
-    _$valueAtom.context.enforceReadPolicy(_$valueAtom);
-    _$valueAtom.reportObserved();
-    return super.value;
-  }
-
-  @override
-  set value(int value) {
-    _$valueAtom.context.conditionallyRunInAction(() {
-      super.value = value;
-      _$valueAtom.reportChanged();
-    }, _$valueAtom, name: '${_$valueAtom.name}_set');
-  }
-
-  final _$counterModelAtom = Atom(name: '_HomeBase.counterModel');
-
-  @override
-  CounterModel get counterModel {
-    _$counterModelAtom.context.enforceReadPolicy(_$counterModelAtom);
-    _$counterModelAtom.reportObserved();
-    return super.counterModel;
-  }
-
-  @override
-  set counterModel(CounterModel value) {
-    _$counterModelAtom.context.conditionallyRunInAction(() {
-      super.counterModel = value;
-      _$counterModelAtom.reportChanged();
-    }, _$counterModelAtom, name: '${_$counterModelAtom.name}_set');
-  }
-
   final _$listItemsAtom = Atom(name: '_HomeBase.listItems');
 
   @override
@@ -63,10 +29,30 @@ mixin _$HomeController on _HomeBase, Store {
   final _$_HomeBaseActionController = ActionController(name: '_HomeBase');
 
   @override
-  void increment() {
+  dynamic addToList(CounterModel counterModel) {
     final _$actionInfo = _$_HomeBaseActionController.startAction();
     try {
-      return super.increment();
+      return super.addToList(counterModel);
+    } finally {
+      _$_HomeBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic seletectItem(int index) {
+    final _$actionInfo = _$_HomeBaseActionController.startAction();
+    try {
+      return super.seletectItem(index);
+    } finally {
+      _$_HomeBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic deleteItemsSelected() {
+    final _$actionInfo = _$_HomeBaseActionController.startAction();
+    try {
+      return super.deleteItemsSelected();
     } finally {
       _$_HomeBaseActionController.endAction(_$actionInfo);
     }

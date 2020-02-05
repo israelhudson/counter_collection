@@ -21,17 +21,14 @@ class _HomePageState extends State<HomePage> {
   var controller = Modular.get<HomeController>();
 
   @override
-  void initState() {
-
-    super.initState();
-  }
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: InkWell(
-            onTap: controller.increment,
+            onTap: ()=>controller.addToList(CounterModel(0)),
             child: Text(widget.title)),
+        leading: IconButton(icon: Icon(Icons.restore_from_trash),
+        onPressed: ()=>controller.deleteItemsSelected(),),
       ),
     body: Observer(
       builder: (context) {
@@ -39,9 +36,8 @@ class _HomePageState extends State<HomePage> {
           child: ListView.builder(
               itemCount: controller.listItems.length,
               itemBuilder: (context, index){
-                CounterModel counter = controller.listItems[index];
 
-                return Text("${counter.counter}");
+                return itemCounterWidget(index);
               }
           ),
         );
@@ -60,6 +56,36 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     ),
+    );
+  }
+
+  Widget itemCounterWidget(int index){
+    return Observer(
+      builder: (context) {
+        return Card(
+          color: controller.listItems[index].isSelected ? Colors.green : Colors.white,
+          child: ListTile(
+            title: Text("${controller.listItems[index].counter}"),
+            //selected: controller.listItems[index].isSelected,
+            isThreeLine: true,
+            subtitle: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                IconButton(icon: Icon(Icons.add), onPressed: (){
+                  controller.listItems[index].increment();
+
+                },),
+                IconButton(icon: Icon(Icons.minimize), onPressed: (){
+                  controller.listItems[index].counter--;
+
+                },),
+              ],
+            ),
+            onTap: controller.listItems[index].setSelected
+          ),
+        );
+      }
     );
   }
 }

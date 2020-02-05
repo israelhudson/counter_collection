@@ -1,10 +1,25 @@
-class CounterModel{
+import 'package:counter_collection/app/shared/models/counter_model.dart';
+import 'package:mobx/mobx.dart';
 
-  int id;
-  int counter;
+part 'counter_model.g.dart';
+
+class CounterModel = _CounterModelBase with _$CounterModel;
+
+abstract class _CounterModelBase with Store {
+  _CounterModelBase(this.counter);
+
+  @observable
   bool isSelected = false;
 
-  CounterModel(this.id, this.counter);
+  @observable
+  int counter = 0;
 
+  @action
+  setSelected () => isSelected = !isSelected;
 
+  @action
+  increment() => counter++;
+
+  @action
+  decrement() => counter--;
 }
