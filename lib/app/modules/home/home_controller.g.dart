@@ -26,6 +26,40 @@ mixin _$HomeController on _HomeBase, Store {
     }, _$valueAtom, name: '${_$valueAtom.name}_set');
   }
 
+  final _$counterModelAtom = Atom(name: '_HomeBase.counterModel');
+
+  @override
+  CounterModel get counterModel {
+    _$counterModelAtom.context.enforceReadPolicy(_$counterModelAtom);
+    _$counterModelAtom.reportObserved();
+    return super.counterModel;
+  }
+
+  @override
+  set counterModel(CounterModel value) {
+    _$counterModelAtom.context.conditionallyRunInAction(() {
+      super.counterModel = value;
+      _$counterModelAtom.reportChanged();
+    }, _$counterModelAtom, name: '${_$counterModelAtom.name}_set');
+  }
+
+  final _$listItemsAtom = Atom(name: '_HomeBase.listItems');
+
+  @override
+  ObservableList<CounterModel> get listItems {
+    _$listItemsAtom.context.enforceReadPolicy(_$listItemsAtom);
+    _$listItemsAtom.reportObserved();
+    return super.listItems;
+  }
+
+  @override
+  set listItems(ObservableList<CounterModel> value) {
+    _$listItemsAtom.context.conditionallyRunInAction(() {
+      super.listItems = value;
+      _$listItemsAtom.reportChanged();
+    }, _$listItemsAtom, name: '${_$listItemsAtom.name}_set');
+  }
+
   final _$_HomeBaseActionController = ActionController(name: '_HomeBase');
 
   @override
