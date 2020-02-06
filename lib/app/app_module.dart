@@ -1,4 +1,6 @@
 import 'package:counter_collection/app/app_controller.dart';
+import 'package:counter_collection/app/modules/config/config_controller.dart';
+import 'package:counter_collection/app/modules/counters/counters_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_collection/app/app_widget.dart';
@@ -8,6 +10,8 @@ class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
+        Bind((i) => CountersController()),
+        Bind((i) => ConfigController()),
       ];
 
   @override

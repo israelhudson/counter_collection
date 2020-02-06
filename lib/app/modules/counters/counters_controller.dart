@@ -17,10 +17,12 @@ abstract class _CountersBase with Store {
   }
 
   @action
-  deleteToList() {
-    listItems.removeAt(0);
+  deleteToList(List<int> list) {
+    list.asMap().forEach((i, value){
+        listItems.removeAt(i);
+    });
 
-    checkIfSelectionList();
+    //checkIfSelectionList();
   }
 
   @action

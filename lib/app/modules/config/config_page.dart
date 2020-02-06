@@ -14,6 +14,7 @@ class ConfigPage extends StatefulWidget {
 
 class _ConfigPageState extends State<ConfigPage> {
   var controller = Modular.get<CountersController>();
+  List<int> counterSelection = [];
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class _ConfigPageState extends State<ConfigPage> {
                         padding: EdgeInsets.all(5),
                         child: RaisedButton(
                           child: Text("Remove Counter"),
-                          onPressed: ()=>controller.deleteToList(),
+                          onPressed: ()=>controller.deleteToList(counterSelection),
                         ),
                       )
                   ),
@@ -101,9 +102,16 @@ class _ConfigPageState extends State<ConfigPage> {
                       controller.listItems[index].counter--;
 
                     },),
+                    IconButton(icon: Icon(Icons.clear), onPressed: (){
+                      controller.listItems[index].counter = 0;
+
+                    },),
                   ],
                 ),
-                onTap: controller.listItems[index].setSelected
+                onTap: (){
+                  controller.listItems[index].setSelected();
+                  counterSelection.add(index);
+                }
             ),
           );
         }

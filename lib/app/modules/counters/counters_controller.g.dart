@@ -40,10 +40,10 @@ mixin _$CountersController on _CountersBase, Store {
   }
 
   @override
-  dynamic deleteToList() {
+  dynamic deleteToList(List<int> list) {
     final _$actionInfo = _$_CountersBaseActionController.startAction();
     try {
-      return super.deleteToList();
+      return super.deleteToList(list);
     } finally {
       _$_CountersBaseActionController.endAction(_$actionInfo);
     }

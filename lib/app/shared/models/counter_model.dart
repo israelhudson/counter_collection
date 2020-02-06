@@ -22,4 +22,5 @@ abstract class _CounterModelBase with Store {
 
   @action
   decrement() => counter--;
+
 }

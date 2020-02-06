@@ -10,8 +10,7 @@ class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind((i) => HomeController()),
-        Bind((i) => CountersController()),
-        Bind((i) => ConfigController()),
+
       ];
 
   @override
