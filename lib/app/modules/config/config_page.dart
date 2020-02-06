@@ -48,11 +48,7 @@ class _ConfigPageState extends State<ConfigPage> {
                   )),
                 ],
               ),
-              controller.listItems.isNotEmpty
-                  ? Expanded(child: CounterListWidget())
-                  : Expanded(
-                      child: Center(child: Text("Empty List")),
-                    ),
+              Expanded(child: CounterListWidget())
             ],
           ),
         ));

@@ -9,16 +9,17 @@ import 'package:counter_collection/app/modules/home/home_page.dart';
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => HomeController()),
-
-      ];
+    Bind((i) => HomeController()),
+    Bind((i) => CountersController()),
+    Bind((i) => ConfigController()),
+  ];
 
   @override
   List<Router> get routers => [
-        Router('/', child: (_, args) => HomePage()),
-        Router('/counters', child: (_, args) => CountersPage()),
-        Router('/config', child: (_, args) => ConfigPage()),
-      ];
+    Router('/', child: (_, args) => HomePage()),
+    Router('/counters', child: (_, args) => CountersPage()),
+    Router('/config', child: (_, args) => ConfigPage()),
+  ];
 
   static Inject get to => Inject<HomeModule>.of();
 }

@@ -18,9 +18,14 @@ abstract class _AppBase with Store {
 
   @action
   deleteToList(List<int> list) {
-    list.asMap().forEach((i, value){
-      listItems.removeAt(i);
-    });
+//    list.asMap().forEach((i, value){
+//      listItems.removeAt(i);
+//    });
+    //listItems.removeAt(0);
+    listItems.removeAt(1);
+    listItems.removeAt(2);
+    listItems.removeAt(3);
+    listItems.removeAt(4);
 
     //checkIfSelectionList();
   }

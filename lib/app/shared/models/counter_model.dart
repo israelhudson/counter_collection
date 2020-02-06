@@ -20,6 +20,31 @@ abstract class _CounterModelBase with Store {
   increment() => counter++;
 
   @action
-  decrement() => counter--;
+  decrement(){
+    if(counter == 0)
+      counter--;
+    else
+      return;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is _CounterModelBase &&
+              runtimeType == other.runtimeType &&
+              isSelected == other.isSelected &&
+              counter == other.counter;
+
+  @override
+  int get hashCode =>
+      isSelected.hashCode ^
+      counter.hashCode;
+
+
+
+
+//  @observable
+//  ObservableList<CounterModel> listItems = ObservableList<CounterModel>();
+
 
 }
