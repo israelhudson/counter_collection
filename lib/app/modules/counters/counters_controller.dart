@@ -15,6 +15,9 @@ abstract class _CountersBase with Store {
   addToList(CounterModel counterModel) => listItems.add(counterModel);
 
   @action
+  deleteToList() => listItems.removeAt(0);
+
+  @action
   seletectItem(int index)=>listItems[index].setSelected();
 
   @action

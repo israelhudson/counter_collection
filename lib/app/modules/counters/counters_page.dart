@@ -26,6 +26,35 @@ class _CountersPageState extends State<CountersPage> {
             onPressed: ()=>controller.deleteItemsSelected(),),
         ),
         body: CounterListWidget()
+//        body: Container(
+//          child: Column(
+//            children: <Widget>[
+//              Row(
+//                mainAxisSize: MainAxisSize.max,
+//                mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                children: <Widget>[
+//                  Expanded(
+//                    child: Container(
+//                      padding: EdgeInsets.all(5),
+//                      child: RaisedButton(
+//                        child: Text("Add Counter"),
+//                        onPressed: ()=>controller.addToList(CounterModel(0)),
+//                      ),
+//                    ),
+//                  ),
+//                  Expanded(
+//                    child: Container(
+//                      padding: EdgeInsets.all(5),
+//                      child: RaisedButton(
+//                        child: Text("Remove Counter"),
+//                      ),
+//                    )
+//                  ),
+//                ],
+//              )
+//            ],
+//          ),
+//        )
     );
   }
 

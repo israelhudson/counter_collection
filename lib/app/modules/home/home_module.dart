@@ -1,3 +1,5 @@
+import 'package:counter_collection/app/modules/config/config_controller.dart';
+import 'package:counter_collection/app/modules/config/config_page.dart';
 import 'package:counter_collection/app/modules/counters/counters_controller.dart';
 import 'package:counter_collection/app/modules/counters/counters_page.dart';
 import 'package:counter_collection/app/modules/home/home_controller.dart';
@@ -9,12 +11,14 @@ class HomeModule extends ChildModule {
   List<Bind> get binds => [
         Bind((i) => HomeController()),
         Bind((i) => CountersController()),
+        Bind((i) => ConfigController()),
       ];
 
   @override
   List<Router> get routers => [
         Router('/', child: (_, args) => HomePage()),
-        Router('/counterlist', child: (_, args) => CountersPage()),
+        Router('/counters', child: (_, args) => CountersPage()),
+        Router('/config', child: (_, args) => ConfigPage()),
       ];
 
   static Inject get to => Inject<HomeModule>.of();

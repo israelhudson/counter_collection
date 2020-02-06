@@ -40,6 +40,16 @@ mixin _$CountersController on _CountersBase, Store {
   }
 
   @override
+  dynamic deleteToList() {
+    final _$actionInfo = _$_CountersBaseActionController.startAction();
+    try {
+      return super.deleteToList();
+    } finally {
+      _$_CountersBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic seletectItem(int index) {
     final _$actionInfo = _$_CountersBaseActionController.startAction();
     try {
