@@ -20,31 +20,58 @@ abstract class _CounterModelBase with Store {
   increment() => counter++;
 
   @action
-  decrement(){
-    if(counter == 0)
-      counter--;
-    else
-      return;
+  decrement() => counter--;
+
+  @observable
+  ObservableList<CounterModel> listItems = ObservableList<CounterModel>();
+
+  @action
+  addToList(CounterModel counterModel){
+    listItems.add(counterModel);
+
+    checkIfSelectionList();
   }
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is _CounterModelBase &&
-              runtimeType == other.runtimeType &&
-              isSelected == other.isSelected &&
-              counter == other.counter;
+  @action
+  deleteToList(List<int> list) {
+    list.asMap().forEach((i, value){
+      listItems.removeAt(i);
+    });
 
-  @override
-  int get hashCode =>
-      isSelected.hashCode ^
-      counter.hashCode;
+    //checkIfSelectionList();
+  }
 
+  @action
+  seletectItem(int indexList){
+    listItems.asMap().forEach((index, value){
+      if(indexList != index)
+        listItems[index].isSelected = false;
+      else
+        listItems[index].isSelected = true;
+    });
+  }
 
+  @action
+  checkIfSelectionList(){
+    int countSele = 0;
 
+    listItems.forEach((f){
+      if(f.isSelected)
+        countSele++;
+    });
 
-//  @observable
-//  ObservableList<CounterModel> listItems = ObservableList<CounterModel>();
+    if(countSele == 0)
+      listItems[0].isSelected = true;
 
+  }
+
+  @action
+  deleteItemsSelected(){
+    listItems.forEach((f){
+      if(f.isSelected) listItems.remove(f);
+    });
+
+    checkIfSelectionList();
+  }
 
 }
