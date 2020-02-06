@@ -1,15 +1,11 @@
 import 'package:counter_collection/app/shared/models/counter_model.dart';
 import 'package:mobx/mobx.dart';
 
-part 'home_controller.g.dart';
+part 'counters_controller.g.dart';
 
-class HomeController = _HomeBase with _$HomeController;
+class CountersController = _CountersBase with _$CountersController;
 
-abstract class _HomeBase with Store {
-
-  @observable
-  String teste = "fdf";
-
+abstract class _CountersBase with Store {
   @observable
   ObservableList<CounterModel> listItems = [
     CounterModel(0)
@@ -27,5 +23,4 @@ abstract class _HomeBase with Store {
       if(f.isSelected) listItems.remove(f);
     });
   }
-
 }
