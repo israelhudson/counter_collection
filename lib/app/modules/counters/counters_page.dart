@@ -1,3 +1,4 @@
+import 'package:counter_collection/app/app_controller.dart';
 import 'package:counter_collection/app/modules/counters/counters_controller.dart';
 import 'package:counter_collection/app/shared/models/counter_model.dart';
 import 'package:flutter/material.dart';
@@ -13,19 +14,13 @@ class CountersPage extends StatefulWidget {
 }
 
 class _CountersPageState extends State<CountersPage> {
-  var controller = Modular.get<CountersController>();
+  var controller = Modular.get<AppController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: InkWell(
-              onTap: () => controller.addToList(CounterModel(0)),
-              child: Text(widget.title)),
-          leading: IconButton(
-            icon: Icon(Icons.restore_from_trash),
-            onPressed: () => controller.deleteItemsSelected(),
-          ),
+          title: Text(widget.title)
         ),
         body: CounterListWidget());
   }
