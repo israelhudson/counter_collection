@@ -60,6 +60,16 @@ mixin _$CountersController on _CountersBase, Store {
   }
 
   @override
+  dynamic checkIfSelectionList() {
+    final _$actionInfo = _$_CountersBaseActionController.startAction();
+    try {
+      return super.checkIfSelectionList();
+    } finally {
+      _$_CountersBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic deleteItemsSelected() {
     final _$actionInfo = _$_CountersBaseActionController.startAction();
     try {

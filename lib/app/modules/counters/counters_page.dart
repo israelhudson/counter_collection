@@ -20,53 +20,58 @@ class _CountersPageState extends State<CountersPage> {
     return Scaffold(
         appBar: AppBar(
           title: InkWell(
-              onTap: ()=>controller.addToList(CounterModel(0)),
+              onTap: () => controller.addToList(CounterModel(0)),
               child: Text(widget.title)),
-          leading: IconButton(icon: Icon(Icons.restore_from_trash),
-            onPressed: ()=>controller.deleteItemsSelected(),),
+          leading: IconButton(
+            icon: Icon(Icons.restore_from_trash),
+            onPressed: () => controller.deleteItemsSelected(),
+          ),
         ),
-        body: CounterListWidget()
-    );
+        body: CounterListWidget());
   }
 
   Observer CounterListWidget() {
-    return Observer(
-        builder: (context) {
-          return Container(
-            padding: EdgeInsets.all(10),
-            child: ListView.builder(
+    return Observer(builder: (context) {
+      return Container(
+        padding: EdgeInsets.all(10),
+        child: controller.listItems.isNotEmpty
+            ? ListView.builder(
                 itemCount: controller.listItems.length,
-                itemBuilder: (context, index){
-
+                itemBuilder: (context, index) {
                   return Column(
-                    children: <Widget>[
-                      itemCounterWidget(index)
-                    ],
+                    children: <Widget>[itemCounterWidget(index)],
                   );
-                }
-            ),
-          );
-        }
-    );
+                })
+            : Center(
+                child: Text("Empty List"),
+              ),
+      );
+    });
   }
 
-  Widget itemCounterWidget(int index){
-    return Observer(
-        builder: (context) {
-          return Card(
-            color: controller.listItems[index].isSelected ? Colors.white : Colors.grey,
-            child: ListTile(
-                //enabled: controller.listItems[index].isSelected ? true : false,
-                title: Text("Counter ${index+1}",style: TextStyle(fontSize: 26)),
-                selected: controller.listItems[index].isSelected,
-                subtitle: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text("${controller.listItems[index].counter}", style: TextStyle(fontSize: 66),),
-                ),
-                onTap: ()=>controller.seletectItem(index)
+  Widget itemCounterWidget(int index) {
+    return Observer(builder: (context) {
+      return Card(
+        color: controller.listItems[index].isSelected
+            ? Colors.white
+            : Colors.white30,
+        child: InkWell(
+          onTap: () => controller.seletectItem(index),
+          child: ListTile(
+            enabled: controller.listItems[index].isSelected ? true : false,
+            title: Text("Counter ${index + 1}", style: TextStyle(fontSize: 26)),
+            //selected: controller.listItems[index].isSelected,
+            subtitle: Align(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                "${controller.listItems[index].counter}",
+                style: TextStyle(fontSize: 66,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
-          );
-        }
-    );
+          ),
+        ),
+      );
+    });
   }
 }

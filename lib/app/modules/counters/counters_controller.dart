@@ -7,15 +7,21 @@ class CountersController = _CountersBase with _$CountersController;
 
 abstract class _CountersBase with Store {
   @observable
-  ObservableList<CounterModel> listItems = [
-    CounterModel(0)
-  ].asObservable();
+  ObservableList<CounterModel> listItems = ObservableList<CounterModel>();
 
   @action
-  addToList(CounterModel counterModel) => listItems.add(counterModel);
+  addToList(CounterModel counterModel){
+    listItems.add(counterModel);
+
+    checkIfSelectionList();
+  }
 
   @action
-  deleteToList() => listItems.removeAt(0);
+  deleteToList() {
+    listItems.removeAt(0);
+
+    checkIfSelectionList();
+  }
 
   @action
   seletectItem(int indexList){
@@ -28,9 +34,25 @@ abstract class _CountersBase with Store {
   }
 
   @action
+  checkIfSelectionList(){
+    int countSele = 0;
+
+    listItems.forEach((f){
+      if(f.isSelected)
+        countSele++;
+    });
+
+    if(countSele == 0)
+      listItems[0].isSelected = true;
+
+  }
+
+  @action
   deleteItemsSelected(){
     listItems.forEach((f){
       if(f.isSelected) listItems.remove(f);
     });
+
+    checkIfSelectionList();
   }
 }
