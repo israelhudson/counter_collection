@@ -50,10 +50,10 @@ mixin _$CountersController on _CountersBase, Store {
   }
 
   @override
-  dynamic seletectItem(int index) {
+  dynamic seletectItem(int indexList) {
     final _$actionInfo = _$_CountersBaseActionController.startAction();
     try {
-      return super.seletectItem(index);
+      return super.seletectItem(indexList);
     } finally {
       _$_CountersBaseActionController.endAction(_$actionInfo);
     }

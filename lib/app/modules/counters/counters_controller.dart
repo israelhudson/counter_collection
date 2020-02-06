@@ -18,7 +18,14 @@ abstract class _CountersBase with Store {
   deleteToList() => listItems.removeAt(0);
 
   @action
-  seletectItem(int index)=>listItems[index].setSelected();
+  seletectItem(int indexList){
+    listItems.asMap().forEach((index, value){
+      if(indexList != index)
+        listItems[index].isSelected = false;
+      else
+        listItems[index].isSelected = true;
+    });
+  }
 
   @action
   deleteItemsSelected(){

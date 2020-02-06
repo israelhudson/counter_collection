@@ -26,35 +26,6 @@ class _CountersPageState extends State<CountersPage> {
             onPressed: ()=>controller.deleteItemsSelected(),),
         ),
         body: CounterListWidget()
-//        body: Container(
-//          child: Column(
-//            children: <Widget>[
-//              Row(
-//                mainAxisSize: MainAxisSize.max,
-//                mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                children: <Widget>[
-//                  Expanded(
-//                    child: Container(
-//                      padding: EdgeInsets.all(5),
-//                      child: RaisedButton(
-//                        child: Text("Add Counter"),
-//                        onPressed: ()=>controller.addToList(CounterModel(0)),
-//                      ),
-//                    ),
-//                  ),
-//                  Expanded(
-//                    child: Container(
-//                      padding: EdgeInsets.all(5),
-//                      child: RaisedButton(
-//                        child: Text("Remove Counter"),
-//                      ),
-//                    )
-//                  ),
-//                ],
-//              )
-//            ],
-//          ),
-//        )
     );
   }
 
@@ -62,6 +33,7 @@ class _CountersPageState extends State<CountersPage> {
     return Observer(
         builder: (context) {
           return Container(
+            padding: EdgeInsets.all(10),
             child: ListView.builder(
                 itemCount: controller.listItems.length,
                 itemBuilder: (context, index){
@@ -82,26 +54,16 @@ class _CountersPageState extends State<CountersPage> {
     return Observer(
         builder: (context) {
           return Card(
-            color: controller.listItems[index].isSelected ? Colors.green : Colors.white,
+            color: controller.listItems[index].isSelected ? Colors.white : Colors.grey,
             child: ListTile(
-                title: Text("${controller.listItems[index].counter}"),
-                //selected: controller.listItems[index].isSelected,
-                isThreeLine: true,
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    IconButton(icon: Icon(Icons.add), onPressed: (){
-                      controller.listItems[index].increment();
-
-                    },),
-                    IconButton(icon: Icon(Icons.minimize), onPressed: (){
-                      controller.listItems[index].counter--;
-
-                    },),
-                  ],
+                //enabled: controller.listItems[index].isSelected ? true : false,
+                title: Text("Counter ${index+1}",style: TextStyle(fontSize: 26)),
+                selected: controller.listItems[index].isSelected,
+                subtitle: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text("${controller.listItems[index].counter}", style: TextStyle(fontSize: 66),),
                 ),
-                onTap: controller.listItems[index].setSelected
+                onTap: ()=>controller.seletectItem(index)
             ),
           );
         }
