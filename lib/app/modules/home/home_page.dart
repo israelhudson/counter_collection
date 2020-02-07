@@ -1,14 +1,9 @@
-import 'dart:developer';
-
 import 'package:counter_collection/app/modules/config/config_page.dart';
 import 'package:counter_collection/app/modules/counters/counters_page.dart';
 import 'package:counter_collection/app/modules/home/home_controller.dart';
-import 'package:counter_collection/app/shared/models/counter_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mobx/mobx.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
