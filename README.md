@@ -4,6 +4,7 @@
  Practice test for job selection on BrainWeb
  - Para rodar o projeto será necessário mudar a branch do sdk do flutter então tente rodar os seguintes comandos:
  > flutter channel beta
+ >
  > flutter upgrade
  
 
