@@ -1,6 +1,7 @@
 import 'package:counter_collection/app/app_controller.dart';
 import 'package:counter_collection/app/modules/counters/counters_controller.dart';
 import 'package:counter_collection/app/shared/models/counter_model.dart';
+import 'package:counter_collection/app/shared/ui_components/widgets_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -49,7 +50,12 @@ class _ConfigPageState extends State<ConfigPage> {
           padding: EdgeInsets.all(5),
           child: RaisedButton(
             child: Text("Remove Counter"),
-            onPressed: () => controller.deleteToList(),
+            //onPressed: () => controller.deleteToList(),
+            onPressed: (){
+              alerDialog(msg: "Deseja excluir os itens selecionados?", context: context,
+                          action: () => controller.deleteToList()
+              );
+            }
           ),
         )),
       ],
@@ -61,12 +67,13 @@ class _ConfigPageState extends State<ConfigPage> {
       return Container(
         child: controller.listItems.isNotEmpty
             ? ListView.builder(
-            itemCount: controller.listItems.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: <Widget>[itemCounterWidget(index)],
-              );
-            }):Center(child: Text("Empty list")),
+                itemCount: controller.listItems.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: <Widget>[itemCounterWidget(index)],
+                  );
+                })
+            : Center(child: Text("Empty list")),
       );
     });
   }
