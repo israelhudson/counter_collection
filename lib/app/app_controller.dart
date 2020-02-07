@@ -57,6 +57,18 @@ abstract class _AppBase with Store {
 
   }
 
+  @computed
+  bool get checkContainsItemsSelected{
+    bool isContain = false;
+
+    listItems.forEach((f){
+    if(f.isSelected == true)
+      isContain = true;
+    });
+
+    return isContain;
+  }
+
   @action
   deleteItemsSelected(){
     listItems.forEach((f){

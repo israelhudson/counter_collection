@@ -20,7 +20,11 @@ class _ConfigPageState extends State<ConfigPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
+        appBar: AppBar(title: Observer(
+          builder: (context) {
+            return Text(widget.title);
+          }
+        )),
         body: Container(
           child: Column(
             children: <Widget>[
@@ -32,33 +36,39 @@ class _ConfigPageState extends State<ConfigPage> {
   }
 
   Widget addRemoveButtonsCounters() {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        Expanded(
-          child: Container(
-            padding: EdgeInsets.all(5),
-            child: RaisedButton(
-              child: Text("Add Counter"),
-              onPressed: () => controller.addToList(CounterModel(0)),
+    return Observer(
+      builder: (context) {
+        return Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(5),
+                child: RaisedButton(
+                  elevation: 5,
+                  child: Text("Add Counter"),
+                  onPressed: () => controller.addToList(CounterModel(0)),
+                ),
+              ),
             ),
-          ),
-        ),
-        Expanded(
-            child: Container(
-          padding: EdgeInsets.all(5),
-          child: RaisedButton(
-            child: Text("Remove Counter"),
-            //onPressed: () => controller.deleteToList(),
-            onPressed: (){
-              alerDialog(msg: "Deseja excluir os itens selecionados?", context: context,
-                          action: () => controller.deleteToList()
-              );
-            }
-          ),
-        )),
-      ],
+            Expanded(
+                child: Container(
+              padding: EdgeInsets.all(5),
+              child: RaisedButton(
+                elevation: 5,
+                disabledColor: Colors.grey[400],
+                child: Text("Remove Counter"),
+                onPressed: !controller.checkContainsItemsSelected ? null : (){
+                  alerDialog(msg: "Deseja excluir os itens selecionados?", context: context,
+                              action: () => controller.deleteToList()
+                  );
+                }
+              ),
+            )),
+          ],
+        );
+      }
     );
   }
 
@@ -118,4 +128,5 @@ class _ConfigPageState extends State<ConfigPage> {
       );
     });
   }
+
 }

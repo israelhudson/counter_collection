@@ -75,4 +75,24 @@ abstract class _CounterModelBase with Store {
 
   }
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is _CounterModelBase &&
+              runtimeType == other.runtimeType &&
+              isOnlySelected == other.isOnlySelected &&
+              isSelected == other.isSelected &&
+              counter == other.counter &&
+              listItems == other.listItems;
+
+  @override
+  int get hashCode =>
+      isOnlySelected.hashCode ^
+      isSelected.hashCode ^
+      counter.hashCode ^
+      listItems.hashCode;
+
+
+
+
 }
