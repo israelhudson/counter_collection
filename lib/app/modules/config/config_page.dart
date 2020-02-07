@@ -1,5 +1,4 @@
 import 'package:counter_collection/app/app_controller.dart';
-import 'package:counter_collection/app/modules/counters/counters_controller.dart';
 import 'package:counter_collection/app/shared/models/counter_model.dart';
 import 'package:counter_collection/app/shared/ui_components/widgets_utils.dart';
 import 'package:flutter/material.dart';
@@ -96,47 +95,21 @@ class _ConfigPageState extends State<ConfigPage> {
             ? Colors.green
             : Colors.white,
         child: ListTile(
+            onTap: () {
+              controller.listItems[index].setSelected();
+            },
             leading: Container(
-             // padding: EdgeInsets.only(bottom: 20),
-              //alignment: Alignment.center,
               child: Text("${controller.listItems[index].counter}",
               style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold),
               ),
             ),
-            //selected: controller.listItems[index].isSelected,
             isThreeLine: true,
             subtitle: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-//                FlatButton.icon(
-//                  color: Colors.grey,
-//
-//                  label: Text(""),
-//                  icon: Icon(Icons.add),
-//                  onPressed: () {
-//                    controller.listItems[index].increment();
-//                  },
-//                ),
-//                RaisedButton.icon(
-//                  label: Text("fd"),
-//                  color: Colors.grey,
-//                  shape: RoundedRectangleBorder(
-//                    borderRadius: BorderRadius.circular(15.0),
-//                  ),
-//                  icon: Icon(Icons.minimize),
-//                  onPressed: () {
-//                    controller.listItems[index].decrement();
-//                  },
-//                ),
-//                IconButton(
-//                  icon: Icon(Icons.clear),
-//                  onPressed: () {
-//                    controller.listItems[index].counter = 0;
-//                  },
-//                ),
                 FloatingActionButton(
                   child: Icon(Icons.add),
                   backgroundColor: Colors.blue,
@@ -156,13 +129,10 @@ class _ConfigPageState extends State<ConfigPage> {
                   backgroundColor: controller.checkCounterEnabled(index) ? Colors.brown : Colors.grey,
                   elevation: 0,
                   tooltip: "Zerar o contador",
-                  onPressed: () => controller.listItems[index].counter = 0,
+                  onPressed: () => controller.resetCounter(index),
                 ),
               ],
-            ),
-            onTap: () {
-              controller.listItems[index].setSelected();
-            }),
+            ),),
       );
     });
   }

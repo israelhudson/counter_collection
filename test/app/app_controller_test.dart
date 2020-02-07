@@ -1,3 +1,4 @@
+import 'package:counter_collection/app/shared/models/counter_model.dart';
 import 'package:flutter_modular/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -19,9 +20,36 @@ void main() {
     });
 
     test("Set Value", () {
-      //expect(app.value, equals(0));
-      //app.increment();
-      //expect(app.value, equals(1));
+      //Testa a adição de um contador
+      app.listItems.add(CounterModel(0));
+      expect(app.listItems.length, equals(1));
+      expect(app.listItems[0].counter, equals(0));
+
+      //Testa o incremento de um contador
+      app.listItems[0].counter++;
+      expect(app.listItems[0].counter, equals(1));
+
+      //Testa o decremento de um contador
+      app.listItems[0].counter--;
+      expect(app.listItems[0].counter, equals(0));
+
+      //Testa o reset de um contador
+      app.listItems[0].counter += 5;
+      app.resetCounter(0);// o Zero é o indice da lista
+      expect(app.listItems[0].counter, equals(0));
+
+      //Testa o excluir varios itens da lista
+      app.listItems.clear();
+      app.listItems.add(CounterModel(0));
+      app.listItems.add(CounterModel(0));
+      app.listItems.add(CounterModel(0));
+      app.listItems.add(CounterModel(0));
+      app.listItems[0].setSelected();
+      app.listItems[1].setSelected();
+      app.deleteToList();
+      expect(app.listItems.length, 2);
+      print("TAMANHO ${app.listItems.length}");
+
     });
   });
 }
