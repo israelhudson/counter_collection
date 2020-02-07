@@ -39,10 +39,20 @@ mixin _$AppController on _AppBase, Store {
   }
 
   @override
-  dynamic deleteToList(List<int> list) {
+  dynamic deleteToList() {
     final _$actionInfo = _$_AppBaseActionController.startAction();
     try {
-      return super.deleteToList(list);
+      return super.deleteToList();
+    } finally {
+      _$_AppBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic seletectOnlyItem(int indexList) {
+    final _$actionInfo = _$_AppBaseActionController.startAction();
+    try {
+      return super.seletectOnlyItem(indexList);
     } finally {
       _$_AppBaseActionController.endAction(_$actionInfo);
     }

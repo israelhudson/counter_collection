@@ -8,10 +8,16 @@ abstract class _CounterModelBase with Store {
   _CounterModelBase(this.counter);
 
   @observable
+  bool isOnlySelected = false;
+
+  @observable
   bool isSelected = false;
 
   @observable
   int counter = 0;
+
+  @action
+  setOnlySelected () => isOnlySelected = !isOnlySelected;
 
   @action
   setSelected () => isSelected = !isSelected;
@@ -42,6 +48,16 @@ abstract class _CounterModelBase with Store {
   }
 
   @action
+  seletectOnlyItem(int indexList){
+    listItems.asMap().forEach((index, value){
+      if(indexList != index)
+        listItems[index].isOnlySelected = false;
+      else
+        listItems[index].isOnlySelected = true;
+    });
+  }
+
+  @action
   seletectItem(int indexList){
     listItems.asMap().forEach((index, value){
       if(indexList != index)
@@ -56,22 +72,13 @@ abstract class _CounterModelBase with Store {
     int countSele = 0;
 
     listItems.forEach((f){
-      if(f.isSelected)
+      if(f.isOnlySelected)
         countSele++;
     });
 
     if(countSele == 0)
-      listItems[0].isSelected = true;
+      listItems[0].isOnlySelected = true;
 
-  }
-
-  @action
-  deleteItemsSelected(){
-    listItems.forEach((f){
-      if(f.isSelected) listItems.remove(f);
-    });
-
-    checkIfSelectionList();
   }
 
 }

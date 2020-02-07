@@ -47,13 +47,13 @@ class _CountersPageState extends State<CountersPage> {
   Widget itemCounterWidget(int index) {
     return Observer(builder: (context) {
       return Card(
-        color: controller.listItems[index].isSelected
+        color: controller.listItems[index].isOnlySelected
             ? Colors.white
             : Colors.white30,
         child: InkWell(
-          onTap: () => controller.seletectItem(index),
+          onTap: () => controller.seletectOnlyItem(index),
           child: ListTile(
-            enabled: controller.listItems[index].isSelected ? true : false,
+            enabled: controller.listItems[index].isOnlySelected ? true : false,
             title: Text("Counter ${index + 1}", style: TextStyle(fontSize: 26)),
             //selected: controller.listItems[index].isSelected,
             subtitle: Align(

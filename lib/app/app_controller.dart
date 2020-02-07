@@ -17,17 +17,16 @@ abstract class _AppBase with Store {
   }
 
   @action
-  deleteToList(List<int> list) {
-//    list.asMap().forEach((i, value){
-//      listItems.removeAt(i);
-//    });
-    //listItems.removeAt(0);
-    listItems.removeAt(1);
-    listItems.removeAt(2);
-    listItems.removeAt(3);
-    listItems.removeAt(4);
+  deleteToList() => listItems.removeWhere((CounterModel cm)=>cm.isSelected == true);
 
-    //checkIfSelectionList();
+  @action
+  seletectOnlyItem(int indexList){
+    listItems.asMap().forEach((index, value){
+      if(indexList != index)
+        listItems[index].isOnlySelected = false;
+      else
+        listItems[index].isOnlySelected = true;
+    });
   }
 
   @action
@@ -45,19 +44,19 @@ abstract class _AppBase with Store {
     int countSele = 0;
 
     listItems.forEach((f){
-      if(f.isSelected)
+      if(f.isOnlySelected)
         countSele++;
     });
 
     if(countSele == 0)
-      listItems[0].isSelected = true;
+      listItems[0].isOnlySelected = true;
 
   }
 
   @action
   deleteItemsSelected(){
     listItems.forEach((f){
-      if(f.isSelected) listItems.remove(f);
+      if(f.isOnlySelected) listItems.remove(f);
     });
 
     checkIfSelectionList();

@@ -9,6 +9,23 @@ part of 'counter_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$CounterModel on _CounterModelBase, Store {
+  final _$isOnlySelectedAtom = Atom(name: '_CounterModelBase.isOnlySelected');
+
+  @override
+  bool get isOnlySelected {
+    _$isOnlySelectedAtom.context.enforceReadPolicy(_$isOnlySelectedAtom);
+    _$isOnlySelectedAtom.reportObserved();
+    return super.isOnlySelected;
+  }
+
+  @override
+  set isOnlySelected(bool value) {
+    _$isOnlySelectedAtom.context.conditionallyRunInAction(() {
+      super.isOnlySelected = value;
+      _$isOnlySelectedAtom.reportChanged();
+    }, _$isOnlySelectedAtom, name: '${_$isOnlySelectedAtom.name}_set');
+  }
+
   final _$isSelectedAtom = Atom(name: '_CounterModelBase.isSelected');
 
   @override
@@ -43,8 +60,35 @@ mixin _$CounterModel on _CounterModelBase, Store {
     }, _$counterAtom, name: '${_$counterAtom.name}_set');
   }
 
+  final _$listItemsAtom = Atom(name: '_CounterModelBase.listItems');
+
+  @override
+  ObservableList<CounterModel> get listItems {
+    _$listItemsAtom.context.enforceReadPolicy(_$listItemsAtom);
+    _$listItemsAtom.reportObserved();
+    return super.listItems;
+  }
+
+  @override
+  set listItems(ObservableList<CounterModel> value) {
+    _$listItemsAtom.context.conditionallyRunInAction(() {
+      super.listItems = value;
+      _$listItemsAtom.reportChanged();
+    }, _$listItemsAtom, name: '${_$listItemsAtom.name}_set');
+  }
+
   final _$_CounterModelBaseActionController =
       ActionController(name: '_CounterModelBase');
+
+  @override
+  dynamic setOnlySelected() {
+    final _$actionInfo = _$_CounterModelBaseActionController.startAction();
+    try {
+      return super.setOnlySelected();
+    } finally {
+      _$_CounterModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setSelected() {
@@ -71,6 +115,56 @@ mixin _$CounterModel on _CounterModelBase, Store {
     final _$actionInfo = _$_CounterModelBaseActionController.startAction();
     try {
       return super.decrement();
+    } finally {
+      _$_CounterModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addToList(CounterModel counterModel) {
+    final _$actionInfo = _$_CounterModelBaseActionController.startAction();
+    try {
+      return super.addToList(counterModel);
+    } finally {
+      _$_CounterModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic deleteToList(List<int> list) {
+    final _$actionInfo = _$_CounterModelBaseActionController.startAction();
+    try {
+      return super.deleteToList(list);
+    } finally {
+      _$_CounterModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic seletectOnlyItem(int indexList) {
+    final _$actionInfo = _$_CounterModelBaseActionController.startAction();
+    try {
+      return super.seletectOnlyItem(indexList);
+    } finally {
+      _$_CounterModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic seletectItem(int indexList) {
+    final _$actionInfo = _$_CounterModelBaseActionController.startAction();
+    try {
+      return super.seletectItem(indexList);
+    } finally {
+      _$_CounterModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic checkIfSelectionList() {
+    final _$actionInfo = _$_CounterModelBaseActionController.startAction();
+    try {
+      return super.checkIfSelectionList();
     } finally {
       _$_CounterModelBaseActionController.endAction(_$actionInfo);
     }
