@@ -57,7 +57,7 @@ abstract class _AppBase with Store {
 
   }
 
-  @computed
+  //@computed
   bool checkCounterEnabled(int index) => listItems[index].counter > 0;
 
   @action
