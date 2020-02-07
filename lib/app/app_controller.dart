@@ -17,7 +17,11 @@ abstract class _AppBase with Store {
   }
 
   @action
-  deleteToList() => listItems.removeWhere((CounterModel cm)=>cm.isSelected == true);
+  deleteToList(){
+    listItems.removeWhere((CounterModel cm)=>cm.isSelected == true);
+
+    checkIfSelectionList();
+  }
 
   @action
   seletectOnlyItem(int indexList){

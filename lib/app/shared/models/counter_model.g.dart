@@ -131,16 +131,6 @@ mixin _$CounterModel on _CounterModelBase, Store {
   }
 
   @override
-  dynamic deleteToList(List<int> list) {
-    final _$actionInfo = _$_CounterModelBaseActionController.startAction();
-    try {
-      return super.deleteToList(list);
-    } finally {
-      _$_CounterModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic seletectOnlyItem(int indexList) {
     final _$actionInfo = _$_CounterModelBaseActionController.startAction();
     try {

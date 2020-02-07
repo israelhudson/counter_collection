@@ -39,15 +39,6 @@ abstract class _CounterModelBase with Store {
   }
 
   @action
-  deleteToList(List<int> list) {
-    list.asMap().forEach((i, value){
-      listItems.removeAt(i);
-    });
-
-    //checkIfSelectionList();
-  }
-
-  @action
   seletectOnlyItem(int indexList){
     listItems.asMap().forEach((index, value){
       if(indexList != index)
