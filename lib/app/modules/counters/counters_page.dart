@@ -38,7 +38,7 @@ class _CountersPageState extends State<CountersPage> {
                   );
                 })
             : Center(
-                child: Text("Empty List"),
+                child: Text("Empty list"),
               ),
       );
     });

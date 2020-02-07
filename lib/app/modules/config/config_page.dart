@@ -23,46 +23,50 @@ class _ConfigPageState extends State<ConfigPage> {
         body: Container(
           child: Column(
             children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(5),
-                      child: RaisedButton(
-                        child: Text("Add Counter"),
-                        onPressed: () => controller.addToList(CounterModel(0)),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                      child: Container(
-                    padding: EdgeInsets.all(5),
-                    child: RaisedButton(
-                      child: Text("Remove Counter"),
-                      onPressed: () =>
-                          controller.deleteToList(),
-                    ),
-                  )),
-                ],
-              ),
+              addRemoveButtonsCounters(),
               Expanded(child: CounterListWidget())
             ],
           ),
         ));
   }
 
+  Widget addRemoveButtonsCounters() {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.all(5),
+            child: RaisedButton(
+              child: Text("Add Counter"),
+              onPressed: () => controller.addToList(CounterModel(0)),
+            ),
+          ),
+        ),
+        Expanded(
+            child: Container(
+          padding: EdgeInsets.all(5),
+          child: RaisedButton(
+            child: Text("Remove Counter"),
+            onPressed: () => controller.deleteToList(),
+          ),
+        )),
+      ],
+    );
+  }
+
   Observer CounterListWidget() {
     return Observer(builder: (context) {
       return Container(
-        child: ListView.builder(
+        child: controller.listItems.isNotEmpty
+            ? ListView.builder(
             itemCount: controller.listItems.length,
             itemBuilder: (context, index) {
               return Column(
                 children: <Widget>[itemCounterWidget(index)],
               );
-            }),
+            }):Center(child: Text("Empty list")),
       );
     });
   }
@@ -90,7 +94,7 @@ class _ConfigPageState extends State<ConfigPage> {
                 IconButton(
                   icon: Icon(Icons.minimize),
                   onPressed: () {
-                    controller.listItems[index].counter--;
+                    controller.listItems[index].decrement();
                   },
                 ),
                 IconButton(

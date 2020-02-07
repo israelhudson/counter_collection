@@ -26,7 +26,10 @@ abstract class _CounterModelBase with Store {
   increment() => counter++;
 
   @action
-  decrement() => counter--;
+  decrement(){
+    if(counter > 0)
+      counter--;
+  }
 
   @observable
   ObservableList<CounterModel> listItems = ObservableList<CounterModel>();
