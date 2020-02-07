@@ -19,26 +19,29 @@ void main() {
       expect(app, isInstanceOf<AppController>());
     });
 
-    test("Set Value", () {
-      //Testa a adição de um contador
+    test("Testa a adição de um contador", () {
       app.listItems.add(CounterModel(0));
       expect(app.listItems.length, equals(1));
       expect(app.listItems[0].counter, equals(0));
+    });
 
-      //Testa o incremento de um contador
+    test("Testa o incremento de um contador", () {
       app.listItems[0].counter++;
       expect(app.listItems[0].counter, equals(1));
+    });
 
-      //Testa o decremento de um contador
+    test("Testa o decremento de um contador", () {
       app.listItems[0].counter--;
       expect(app.listItems[0].counter, equals(0));
+    });
 
-      //Testa o reset de um contador
+    test("Testa o reset de um contador", () {
       app.listItems[0].counter += 5;
       app.resetCounter(0);// o Zero é o indice da lista
       expect(app.listItems[0].counter, equals(0));
+    });
 
-      //Testa o excluir varios itens da lista
+    test("Testa o excluir varios itens da lista", () {
       app.listItems.clear();
       app.listItems.add(CounterModel(0));
       app.listItems.add(CounterModel(0));
@@ -48,8 +51,6 @@ void main() {
       app.listItems[1].setSelected();
       app.deleteToList();
       expect(app.listItems.length, 2);
-      print("TAMANHO ${app.listItems.length}");
-
     });
   });
 }
