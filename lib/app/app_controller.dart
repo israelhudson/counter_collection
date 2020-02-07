@@ -58,6 +58,9 @@ abstract class _AppBase with Store {
   }
 
   @computed
+  bool checkCounterEnabled(int index) => listItems[index].counter > 0;
+
+  @computed
   bool get checkContainsItemsSelected{
     bool isContain = false;
 

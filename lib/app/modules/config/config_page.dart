@@ -91,34 +91,72 @@ class _ConfigPageState extends State<ConfigPage> {
   Widget itemCounterWidget(int index) {
     return Observer(builder: (context) {
       return Card(
+        elevation: 5,
         color: controller.listItems[index].isSelected
             ? Colors.green
             : Colors.white,
         child: ListTile(
-            title: Text("${controller.listItems[index].counter}"),
+            leading: Container(
+             // padding: EdgeInsets.only(bottom: 20),
+              //alignment: Alignment.center,
+              child: Text("${controller.listItems[index].counter}",
+              style: TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold),
+              ),
+            ),
             //selected: controller.listItems[index].isSelected,
             isThreeLine: true,
             subtitle: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: () {
-                    controller.listItems[index].increment();
-                  },
+//                FlatButton.icon(
+//                  color: Colors.grey,
+//
+//                  label: Text(""),
+//                  icon: Icon(Icons.add),
+//                  onPressed: () {
+//                    controller.listItems[index].increment();
+//                  },
+//                ),
+//                RaisedButton.icon(
+//                  label: Text("fd"),
+//                  color: Colors.grey,
+//                  shape: RoundedRectangleBorder(
+//                    borderRadius: BorderRadius.circular(15.0),
+//                  ),
+//                  icon: Icon(Icons.minimize),
+//                  onPressed: () {
+//                    controller.listItems[index].decrement();
+//                  },
+//                ),
+//                IconButton(
+//                  icon: Icon(Icons.clear),
+//                  onPressed: () {
+//                    controller.listItems[index].counter = 0;
+//                  },
+//                ),
+                FloatingActionButton(
+                  child: Icon(Icons.add),
+                  backgroundColor: Colors.blue,
+                  elevation: 0,
+                  tooltip: "Incrementar o contador",
+                  onPressed: () => controller.listItems[index].increment(),
                 ),
-                IconButton(
-                  icon: Icon(Icons.minimize),
-                  onPressed: () {
-                    controller.listItems[index].decrement();
-                  },
+                FloatingActionButton(
+                  child: Icon(Icons.minimize),
+                  backgroundColor: controller.checkCounterEnabled(index) ? Colors.orange : Colors.grey,
+                  elevation: 0,
+                  tooltip: "Decrementar o contador",
+                  onPressed: () => controller.listItems[index].decrement(),
                 ),
-                IconButton(
-                  icon: Icon(Icons.clear),
-                  onPressed: () {
-                    controller.listItems[index].counter = 0;
-                  },
+                FloatingActionButton(
+                  child: Icon(Icons.do_not_disturb),
+                  backgroundColor: controller.checkCounterEnabled(index) ? Colors.brown : Colors.grey,
+                  elevation: 0,
+                  tooltip: "Zerar o contador",
+                  onPressed: () => controller.listItems[index].counter = 0,
                 ),
               ],
             ),
