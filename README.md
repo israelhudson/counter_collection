@@ -6,7 +6,8 @@
  > flutter channel beta
  >
  > flutter upgrade
- 
+ >
+ > flutter pub get 
 
  - Foi utilizado MobX para o controle de estado da aplicação. O MobX exige que rode um comando no terminal. 
  Caso for alterar algo no Controller terá que executar o seguinte comando no terminal dentro do projeto
