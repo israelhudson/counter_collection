@@ -26,12 +26,12 @@ void main() {
     });
 
     test("Testa o incremento de um contador", () {
-      app.listItems[0].counter++;
+      app.listItems[0].increment();
       expect(app.listItems[0].counter, equals(1));
     });
 
     test("Testa o decremento de um contador", () {
-      app.listItems[0].counter--;
+      app.listItems[0].decrement();
       expect(app.listItems[0].counter, equals(0));
     });
 
